@@ -8,4 +8,25 @@
     select * from tbl_board where bno = #{bno}
   </select>
 
+  <select id="getList" resultType="com.suhong.board.domain.BoardVO">
+    select * from tbl_board order by bno desc
+    limit #{skip}, #{size}
+  </select>
+  
+  <insert id="register">
+    insert into tbl_board (title, content, writer)
+    VALUES (#{title}, #{content}, #{writer})
+  </insert>
+
+  <select id="getTotal" resultType="int">
+    select count(*) from tbl_board where bno > 0
+  </select>
+
+  <update id="modify">
+    update tbl_board set title = #{title}, content = #{content}, updatedate = now() where bno = #{bno}
+  </update>
+
+  <delete id="delete">
+    delete from tbl_board where bno = #{bno}
+  </delete>
 </mapper>
