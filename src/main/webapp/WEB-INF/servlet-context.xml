@@ -13,7 +13,7 @@
   <mvc:annotation-driven></mvc:annotation-driven>
 
   <!--    정적인 파일들에 대해선 controller를 통하지 않고 그냥 로딩?-->
-  <!--    <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>-->
+<!--  <mvc:resources mapping="/resources/**" location="/resources/"></mvc:resources>-->
 
   <context:component-scan base-package="com.suhong.board.controller"/>
 

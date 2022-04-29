@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: suhong
@@ -19,6 +20,29 @@ ${boardDTO}
 
 <button class="returnBtn">목록으로 돌아가기</button>
 <button class="modifyBtn">수정 / 삭제</button>
+
+<table>
+  <thead>
+    <tr>
+      <td>#</td>
+      <td>내용</td>
+      <td>작성자</td>
+      <td>작성일</td>
+    </tr>
+  </thead>
+  <tbody class="commentList">
+  <c:forEach items="${commentDTOList}" var="comment">
+    <tr>
+      <td>${comment.cno}</td>
+      <td>${comment.commentText}</td>
+      <td>${comment.commenter}</td>
+      <td>${comment.regDate}</td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+
+${listDTO}
 
 <script>
   const returnBtn = document.querySelector("button.returnBtn");

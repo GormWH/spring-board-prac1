@@ -1,10 +1,10 @@
 package com.suhong.board.controller;
 
-import com.suhong.board.domain.BoardVO;
 import com.suhong.board.dto.BoardDTO;
+import com.suhong.board.dto.CommentDTO;
 import com.suhong.board.dto.ListDTO;
-import com.suhong.board.mapper.BoardMapper;
-import com.suhong.board.service.BoardServiceImpl;
+import com.suhong.board.service.BoardService;
+import com.suhong.board.service.CommentService;
 import com.suhong.util.Paginator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,16 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @Log4j2
 @RequiredArgsConstructor
-@RequestMapping("/board/")
+@RequestMapping("/board")
 public class BoardController {
 
-  private final BoardServiceImpl boardService;
+  private final BoardService boardService;
+  private final CommentService commentService;
+
+  @GetMapping("")
+  public String root() {
+    return "redirect:/board/list";
+  }
 
   @GetMapping("/list")
   public void listGET(ListDTO listDTO, Model model) {
@@ -49,7 +54,9 @@ public class BoardController {
   @GetMapping("/read/{bno}")
   public String readGET(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model) {
     BoardDTO boardDTO = boardService.getOne(bno);
+    List<CommentDTO> commentDTOList = commentService.getList(bno, listDTO);
     model.addAttribute("boardDTO", boardDTO);
+    model.addAttribute("commentDTOList", commentDTOList);
     return "/board/read";
   }
 

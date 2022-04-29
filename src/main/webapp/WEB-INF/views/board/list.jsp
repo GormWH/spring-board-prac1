@@ -37,17 +37,26 @@ ${paginator}
   </tbody>
 </table>
 
-<ul class="pagination">
+<ul class="pagination" style="display: flex; list-style: none">
+  <style>
+    li {
+        margin: 0.5em;
+        border: solid chocolate;
+    }
+    .selected {
+        background-color: chocolate;
+    }
+  </style>
   <c:if test="${paginator.prev}">
-    <li><a href="${paginator.start - 1}">prev</a></li>
+    <li data-num="${paginator.start - 1}">prev</li>
   </c:if>
   <c:forEach begin="${paginator.start}" end="${paginator.end}" var="num">
-    <li>
-      <a href="${num}">${num}</a>
+    <li data-num="${num}" class="${listDTO.page == num ? 'selected' : ''}">
+      ${num}
     </li>
   </c:forEach>
   <c:if test="${paginator.next}">
-    <li><a href="${paginator.end + 1}">next</a></li>
+    <li data-num="${paginator.end + 1}">next</li>
   </c:if>
 </ul>
 
@@ -83,7 +92,7 @@ ${paginator}
   pagination.addEventListener("click", e => {
     e.preventDefault();
     e.stopPropagation();
-    const href = e.target.closest("a").getAttribute("href");
+    const href = e.target.getAttribute("data-num");
     actionForm.querySelector("input[name='page']").value = href;
     actionForm.setAttribute("action", `/board/list`);
     actionForm.submit();
