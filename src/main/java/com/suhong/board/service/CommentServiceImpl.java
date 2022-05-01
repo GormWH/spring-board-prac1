@@ -28,4 +28,11 @@ public class CommentServiceImpl implements CommentService{
             .collect(Collectors.toList());
     return commentDTOList;
   }
+
+  @Override
+  public Integer register(CommentDTO commentDTO) {
+    CommentVO commentVO = modelMapper.map(commentDTO, CommentVO.class);
+    commentMapper.register(commentVO);
+    return commentMapper.getCommentCount(commentVO.getBno());
+  }
 }

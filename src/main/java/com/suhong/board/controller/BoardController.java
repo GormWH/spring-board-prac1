@@ -54,9 +54,7 @@ public class BoardController {
   @GetMapping("/read/{bno}")
   public String readGET(@PathVariable("bno") Integer bno, ListDTO listDTO, Model model) {
     BoardDTO boardDTO = boardService.getOne(bno);
-    List<CommentDTO> commentDTOList = commentService.getList(bno, listDTO);
     model.addAttribute("boardDTO", boardDTO);
-    model.addAttribute("commentDTOList", commentDTOList);
     return "/board/read";
   }
 

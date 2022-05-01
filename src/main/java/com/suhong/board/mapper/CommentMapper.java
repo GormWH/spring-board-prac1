@@ -9,4 +9,8 @@ import java.util.List;
 public interface CommentMapper {
 
   List<CommentVO> getList(@Param("bno")Integer bno, @Param("listDTO")ListDTO listDTO);
+
+  void register(CommentVO commentVO);
+
+  int getCommentCount(Integer bno);
 }

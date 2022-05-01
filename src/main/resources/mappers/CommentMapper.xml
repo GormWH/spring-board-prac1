@@ -8,5 +8,12 @@
     select * from tbl_comment where bno = #{bno} order by bno asc
   </select>
 
+  <insert id="register">
+    insert into tbl_comment (bno, commentText, commenter)
+    values (#{bno}, #{commentText}, #{commenter})
+  </insert>
 
+  <select id="getCommentCount" resultType="int">
+    select count(*) from tbl_reply where bno = #{bno} and rno > 0
+  </select>
 </mapper>
