@@ -34,6 +34,22 @@ ${boardDTO}
 
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination" style="display: flex; list-style: none">
+    <style>
+        li {
+            margin: 0.5em;
+            border: solid chocolate;
+        }
+        .selected {
+            background-color: chocolate;
+        }
+    </style>
+
+  </ul>
+</nav>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/resources/js/comment.js"></script>
 <script>
